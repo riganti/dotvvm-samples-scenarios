@@ -1,0 +1,73 @@
+﻿@viewModel Scenarios.ViewModels.Sample07.ModalViewModel, Scenarios
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <style>
+        .modal.show {
+            display: block;
+        }
+        .modal-backdrop {
+            opacity: 0.4;
+        }
+    </style>
+
+    <form class="form-inline"
+            FormControls.Enabled="{value: Countries.RowEditOptions.EditRowId == null}">
+
+        <label>Search country</label>
+
+        <dot:TextBox Text="{value: Search}" />
+
+        <dot:Button Text="Search"
+                    IsSubmitButton="true"
+                    Click="{command: Countries.RequestRefresh()}"
+                    class="btn btn-primary" />
+    </form>
+
+    <dot:GridView DataSource="{value: Countries}"
+                    class="table table-striped">
+
+        <dot:GridViewTextColumn HeaderText="ID"
+                                ValueBinding="{value: Id}" />
+
+        <dot:GridViewTextColumn HeaderText="Name"
+                                ValueBinding="{value: Name}" />
+
+        <dot:GridViewTextColumn HeaderText="Continent"
+                                ValueBinding="{value: ContinentName}" />
+
+        <dot:GridViewTemplateColumn>
+            <dot:Button Text="Delete"
+                        Click="{staticCommand: _root.ItemToDelete = _this}"
+                        class="btn btn-outline-danger" />
+        </dot:GridViewTemplateColumn>
+    </dot:GridView>
+
+    <div Visible="{value: ItemToDelete != null}">
+        <div class="modal-backdrop"></div>
+        <div class="modal fade show" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete country</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you really want to delete the country <strong>{{value: ItemToDelete.Name}}</strong>?</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <dot:Button Text="Delete"
+                                    Click="{command: _root.Delete()}" 
+                                    class="btn btn-danger"/>
+                        <dot:Button Text="Cancel"
+                                    Click="{staticCommand: ItemToDelete = null}" 
+                                    class="btn btn-outline-secondary"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</dot:Content>
+

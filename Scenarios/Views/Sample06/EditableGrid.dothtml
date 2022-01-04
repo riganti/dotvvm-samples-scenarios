@@ -1,0 +1,61 @@
+﻿@viewModel Scenarios.ViewModels.Sample06.EditableGridViewModel, Scenarios
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <form class="form-inline" 
+          FormControls.Enabled="{value: Countries.RowEditOptions.EditRowId == null}">
+
+        <label>Search country</label>
+
+        <dot:TextBox Text="{value: Search}" />
+
+        <dot:Button Text="Search"
+                    IsSubmitButton="true"
+                    Click="{command: Countries.Req()}"
+                    class="btn btn-primary" />
+    </form>
+
+    <dot:GridView DataSource="{value: Countries}"
+                  InlineEditing="true"
+                  class="table table-striped">
+
+        <dot:GridViewTextColumn HeaderText="ID"
+                                ValueBinding="{value: Id}"
+                                IsEditable="false" />
+
+        <dot:GridViewTextColumn HeaderText="Name"
+                                ValueBinding="{value: Name}" />
+
+        <dot:GridViewTemplateColumn HeaderText="Continent">
+            <ContentTemplate>
+                {{value: ContinentName}}
+            </ContentTemplate>
+            <EditTemplate>
+                <dot:ComboBox DataSource="{value: _root.Continents}"
+                              ItemTextBinding="{value: Name}"
+                              ItemValueBinding="{value: Id}"
+                              SelectedValue="{value: ContinentId}" />
+            </EditTemplate>
+        </dot:GridViewTemplateColumn>
+
+        <dot:GridViewTemplateColumn>
+            <ContentTemplate>
+                <dot:Button Text="Edit"
+                            Click="{command: _root.EditRow(_this)}"
+                            class="btn btn-outline-primary" />
+            </ContentTemplate>
+            <EditTemplate>
+                <dot:Button Text="Save"
+                            Click="{command: _root.SaveRow(_this)}"
+                            class="btn btn-primary" />
+
+                <dot:Button Text="Cancel"
+                            Click="{command: _root.CancelEdit()}"
+                            class="btn btn-outline-danger" />
+            </EditTemplate>
+        </dot:GridViewTemplateColumn>
+    </dot:GridView>
+
+</dot:Content>
+

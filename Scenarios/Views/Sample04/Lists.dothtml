@@ -1,0 +1,44 @@
+﻿@viewModel Scenarios.ViewModels.Sample04.ListsViewModel, Scenarios
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div style="width: 400px">
+
+        <style type="text/css">
+            .complete {
+                text-decoration: line-through;
+            }
+        </style>
+
+        <form class="form-inline">
+            <label>New task</label>
+
+            <dot:TextBox Text="{value: NewTask}" />
+
+            <dot:Button Text="Add task"
+                        IsSubmitButton="true"
+                        Click="{command: AddTask()}"
+                        class="btn btn-primary" />
+        </form>
+
+        <dot:Repeater DataSource="{value: Tasks}"
+                      WrapperTagName="ul"
+                      class="list-group">
+
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                class-complete="{value: IsCompleted}">
+
+                {{value: Text}}
+
+                <dot:Button Text="✔"
+                            Click="{command: _root.CompleteTask(_this)}"
+                            Visible="{value: !IsCompleted}"
+                            class="btn btn-outline-secondary btn-sm" />
+            </li>
+        </dot:Repeater>
+
+    </div>
+
+</dot:Content>
+

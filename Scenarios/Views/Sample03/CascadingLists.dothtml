@@ -1,0 +1,29 @@
+﻿@viewModel Scenarios.ViewModels.Sample03.CascadingListsViewModel, Scenarios
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div style="width: 400px">
+
+        <form>
+            <div class="form-group">
+                <label>Continent</label>
+                <dot:ComboBox DataSource="{value: _root.Continents}"
+                              ItemTextBinding="{value: Name}"
+                              ItemValueBinding="{value: Id}"
+                              SelectedValue="{value: SelectedContinentId}"
+                              SelectionChanged="{command: RefreshCountries()}" />
+            </div>
+            <div class="form-group">
+                <label>Country</label>
+                <dot:ComboBox DataSource="{value: _root.Countries}"
+                              ItemTextBinding="{value: Name}"
+                              ItemValueBinding="{value: Id}"
+                              SelectedValue="{value: SelectedCountryId}" />
+            </div>
+        </form>
+
+    </div>
+
+</dot:Content>
+

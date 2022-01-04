@@ -1,0 +1,32 @@
+﻿@viewModel Scenarios.ViewModels.DefaultViewModel, Scenarios
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Scenarios</title>
+    <dot:RequiredResource Name="bootstrap" />
+</head>
+<body>
+
+    <div class="container-fluid">
+
+        <h1>DotVVM is so easy to use</h1>
+
+        <h2>Forms with data-binding</h2>
+
+        <p>
+            <strong>DotVVM</strong> ships with many components which help you build nice forms.
+        </p>
+        <p>
+            Just bind <a href="https://www.dotvvm.com/docs/latest/controls/builtin/TextBox">TextBox</a> to a <strong>string</strong> property in the viewmodel,
+            or <a href="https://www.dotvvm.com/docs/latest/controls/builtin/ComboBox">ComboBox</a> to a collection to create the drop-down list.
+        </p>
+
+        <cc:SampleView Folder="Sample01" />
+
+    </div>
+
+</body>
+</html>

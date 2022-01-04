@@ -1,0 +1,22 @@
+﻿@viewModel Scenarios.ViewModels.Sample02.ShowHideSectionViewModel, Scenarios
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div style="width: 400px">
+
+        <dot:CheckBox Checked="{value: IsCompany}">
+            I represent a company
+        </dot:CheckBox>
+
+        <form Visible="{value: IsCompany}">
+            <div class="form-group">
+                <label>Company registration number</label>
+                <dot:TextBox Text="{value: CompanyRegNo}" />
+            </div>
+        </form>
+
+    </div>
+
+</dot:Content>
+

@@ -1,0 +1,31 @@
+﻿@viewModel Scenarios.ViewModels.Sample01.FormControlsViewModel, Scenarios
+@masterPage Views/MasterPage.dotmaster
+
+<dot:Content ContentPlaceHolderID="MainContent">
+
+    <div style="width: 400px">
+        <%--  BEGIN --%>
+        <form DataContext="{value: EditedAddress}">
+            <div class="form-group">
+                <label>City</label>
+                <dot:TextBox Text="{value: City}" />
+            </div>
+
+            <div class="form-group">
+                <label>State</label>
+                <dot:ComboBox DataSource="{value: _root.States}"
+                              SelectedValue="{value: State}" />
+            </div>
+
+            <div class="text-right">
+                <dot:Button Text="Submit"
+                            IsSubmitButton="true"
+                            Click="{command: _root.Submit()}"
+                            class="btn btn-primary" />
+            </div>
+        </form>
+        <%--  END --%>
+    </div>
+
+</dot:Content>
+
